@@ -53,15 +53,16 @@ const cardArray = [
 ]
 
 const grid = document.querySelector('.grid')
-
+cardsChosen = [];
+cardsChosenId = [];
 
 //create Grid
 function createBoard(){
 for (let i = 0; i < cardArray.length; i++){
     const card = document.createElement('img');
-    card.setAttribute('src', 'Images/blue.png')
+    card.setAttribute('src', 'Images/blank.png')
     card.setAttribute('data-id', i);
-    //card.addEventListener('click', flipCard);
+    card.addEventListener('click', flipCard);
     grid.appendChild(card);
     }
 }
@@ -69,9 +70,13 @@ createBoard()
 
 //flip your card function
 function flipCard(){
-
-
-
+var cardId = this.getAttribute('data-id')
+cardsChosen.push(cardArray[cardId].name)
+cardsChosenId.push(cardId)
+this.setAttribute('src', cardArray[cardId].img)
+if (cardsChosen.length === 2){
+    setTimeout(findMatch, 551)
+ }
 }
 
 //find match function
