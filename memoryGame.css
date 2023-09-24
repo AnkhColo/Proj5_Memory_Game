@@ -1,9 +1,6 @@
-img {
-    height: 150px;
-    width: 150px;
-}
-
-head {
+.grid {
     display: flex;
-    justify-content: centre;
+    flex-wrap: wrap;
+    height: 300px;
+    width: 400px;
 }
