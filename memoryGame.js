@@ -52,9 +52,12 @@ const cardArray = [
     }
 ]
 
+cardArray.sort(() => 0.5 - Math.random())
+
 const grid = document.querySelector('.grid')
 cardsChosen = [];
 cardsChosenId = [];
+cardsWon = [];
 
 //create Grid
 function createBoard(){
@@ -81,7 +84,26 @@ if (cardsChosen.length === 2){
 
 //find match function
 function findMatch(){
+    cards = document.querySelectorAll('img')
+    optionOneId = cardsChosenId[0];
+    optionTwoId = cardsChosenId[1];
 
+    if(optionOneId === optionTwoId){
+        alert('You found a match!')
+        cards[optionOneId].setAttribute('src', 'Images/white.png');
+        cards[optionTwoId].setAttribute('src', 'Images/white.png');
+        cardsWon.push(cardsChosen);
+    } else {
+        cards[optionOneId].setAttribute('src', 'blank.png');
+        cards[optionTwoId].setAttribute('src', 'blank.png');
+        alert('Sorry, Try Again!')
+    }
+    cardsChosen = []
+    cardsChosenId = []
+    resultDisplay.textContent = cardsWon.length;
+    if (cardsWon.length === cardArray.length/2){
+        resultDisplay.textContent = 'Congratulations! You found them all!'
+    }
     
 }
 })
